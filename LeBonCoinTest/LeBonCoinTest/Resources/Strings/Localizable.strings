@@ -5,3 +5,6 @@
   Created by Bérangère La Touche on 20/01/2020.
   Copyright © 2020 Bérangère La Touche. All rights reserved.
 */
+
+/// LIST CONTROLLER
+"controllers.list_controller.nav_bar_title_list_controller" = "Liste d'articles";

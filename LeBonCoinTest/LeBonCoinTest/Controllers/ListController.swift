@@ -10,6 +10,8 @@ import UIKit
 
 class ListController: UIViewController {
     
+    let cellId = "ItemCell"
+    
     let listView: ListView = {
         let view = ListView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -19,9 +21,17 @@ class ListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
+        setTableViewDelegate()
+    }
+    
+    private func setTableViewDelegate() {
+        listView.itemsTableView.delegate = self
+        listView.itemsTableView.dataSource = self
     }
     
     private func setView() {
+        self.navigationItem.titleView = listView.navBarTitle
+        
         view.addSubview(listView)
         listView
             .topAnchor
@@ -42,3 +52,26 @@ class ListController: UIViewController {
     }
     
 }
+
+extension ListController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ItemCellController
+            
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let itemDetailsController = ItemDetailsController()
+        navigationController?.pushViewController(itemDetailsController, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 95
+    }
+    
+}
+

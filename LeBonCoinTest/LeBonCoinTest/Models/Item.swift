@@ -1,0 +1,44 @@
+//
+//  Item.swift
+//  LeBonCoinTest
+//
+//  Created by Bérangère La Touche on 20/01/2020.
+//  Copyright © 2020 Bérangère La Touche. All rights reserved.
+//
+
+import UIKit
+
+class Item: Codable {
+    
+    public let id: CLong
+    public let category_id: Int
+    public let title: String
+    public let description: String
+    public let price: Double
+    public let images_url: ImageUrl
+    public let creation_date: Date
+    public let is_urgent: Bool
+    
+    init(id: CLong, category_id: Int, title: String, description: String, price: Double, images_url: ImageUrl, creation_date: Date, is_urgent: Bool) {
+        self.id = id
+        self.category_id = category_id
+        self.title = title
+        self.description = description
+        self.price = price
+        self.images_url = images_url
+        self.creation_date = creation_date
+        self.is_urgent = is_urgent
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case category_id = "category_id"
+        case title = "title"
+        case description = "description"
+        case price = "price"
+        case images_url = "images_url"
+        case creation_date = "creation_date"
+        case is_urgent = "is_urgent"
+    }
+    
+}
