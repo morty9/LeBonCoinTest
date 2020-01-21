@@ -31,7 +31,7 @@ class UrgentView: UIView {
         let label = UILabel()
         label.text = Strings.is_urgent.localized
         label.textColor = Colors.yellow_urgent
-        label.font = .some(.systemFont(ofSize: 15, weight: .semibold))
+        label.font = .some(.systemFont(ofSize: 13, weight: .semibold))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -69,7 +69,7 @@ class UrgentView: UIView {
     private func setStarImage() {
         starImage
             .heightAnchor
-            .constraint(equalToConstant: 20)
+            .constraint(equalToConstant: 15)
             .isActive = true
         starImage
             .widthAnchor

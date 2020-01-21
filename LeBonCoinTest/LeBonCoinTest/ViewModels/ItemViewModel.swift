@@ -41,7 +41,7 @@ class ItemViewModel {
         return images_url
     }
     
-    public var creation_date: String {
+    public var creation_date: Date {
         return item.creation_date
     }
     

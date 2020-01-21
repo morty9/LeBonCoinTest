@@ -10,7 +10,9 @@ import UIKit
 
 class APIItemHandler {
     
-    let parsers = ItemParser()
+    let itemParser = ItemParser()
+    let itemDateClassifier = ItemDateClassifier()
+    let itemStatusClassifier = ItemStatusClassifier()
     
     func getItems(completion: @escaping (_ result: [Item]) -> Void) {
         
@@ -23,8 +25,10 @@ class APIItemHandler {
                 return
             }
             
-            self.parsers.parseToItemArray(data: data) { (res) in
-                completion(res)
+            self.itemParser.parseToItemArray(data: data) { (res) in
+                let sortedByDate = self.itemDateClassifier.sortItemsByDate(items: res)
+                let sortedByStatus = self.itemStatusClassifier.sortItemsByStatus(items: sortedByDate)
+                completion(sortedByStatus)
             }
         })
 
@@ -36,6 +40,8 @@ class APIItemHandler {
 
 class APICategoryHandler {
     
+    let categoryParser = CategoryParser()
+    
     func getCategories(completion: @escaping (_ result: [Category]) -> Void) {
         
         var request = URLRequest(url: URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json")!)
@@ -43,16 +49,12 @@ class APICategoryHandler {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            let decoder = JSONDecoder()
+            guard let data = data else {
+                return
+            }
         
-            do {
-                guard let data = data else {
-                    return
-                }
-                let res = try decoder.decode([Category].self, from: data)
+            self.categoryParser.parseToCategoryArray(data: data) { (res) in
                 completion(res)
-            } catch {
-                print(error.localizedDescription)
             }
         })
 

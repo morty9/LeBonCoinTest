@@ -16,11 +16,11 @@ class Item: Codable {
     public let description: String
     public let price: Int
     public let images_url: ImageUrl
-    public let creation_date: String
+    public let creation_date: Date
     public let is_urgent: Bool
     public let siret: String?
     
-    init(id: CLong, category_id: Int, title: String, description: String, price: Int, images_url: ImageUrl, creation_date: String, is_urgent: Bool, siret: String?) {
+    init(id: CLong, category_id: Int, title: String, description: String, price: Int, images_url: ImageUrl, creation_date: Date, is_urgent: Bool, siret: String?) {
         self.id = id
         self.category_id = category_id
         self.title = title

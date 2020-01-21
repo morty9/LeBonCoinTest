@@ -16,11 +16,17 @@ class ImageUrlViewModel {
         self.imageUrl = imageUrl
     }
     
-    public var small: String {
+    public var small: String? {
         return imageUrl.small!
     }
     
-    public var thumb: String {
+    public var getSmall: UIImage? {
+        let imageView = UIImageView()
+        imageView.load(url: URL(string: imageUrl.small!)!)
+        return imageView.image
+    }
+    
+    public var thumb: String? {
         return imageUrl.thumb!
     }
     

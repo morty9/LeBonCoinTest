@@ -9,7 +9,8 @@
 import UIKit
 
 enum DateFormatterString {
-    case date
+    case dateEN
+    case dateFR
     case hours
 }
 
@@ -18,7 +19,8 @@ extension DateFormatterString : RawRepresentable {
     
     init?(rawValue: String) {
         switch (rawValue) {
-        case "MMM dd, yyyy": self = .date
+        case "MMM dd, yyyy": self = .dateEN
+        case "dd MMM, yyyy HH:mm": self = .dateFR
         case "HH:mm": self = .hours
             
         default: return nil
@@ -27,19 +29,20 @@ extension DateFormatterString : RawRepresentable {
     
     var rawValue: RawValue {
         switch self {
-        case .date: return "MMM dd, yyyy"
+        case .dateEN: return "MMM dd, yyyy"
+        case .dateFR: return "dd MMM, yyyy HH:mm"
         case .hours: return "HH:mm"
         }
     }
 }
 
 /// Transform time interval to String with a specific formatter
-extension TimeInterval {
-    func toDateString(format: DateFormatterString) -> String{
-        let date = Date(timeIntervalSince1970: TimeInterval(self))
+extension Date {
+    func toDateString(format: DateFormatterString) -> String {
+        //let date = Date(timeIntervalSince1970: TimeInterval(self))
         let formatter = DateFormatter()
         formatter.dateFormat = format.rawValue
         formatter.timeZone = .current
-        return formatter.string(from: date)
+        return formatter.string(from: self)
     }
 }

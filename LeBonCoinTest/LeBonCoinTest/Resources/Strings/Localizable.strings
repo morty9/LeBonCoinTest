@@ -8,7 +8,11 @@
 
 /// LIST CONTROLLER
 "controllers.list_controller.nav_bar_title_list_controller" = "Liste d'articles";
+"controllers.list_controller.picker_view_button_title" = "Valider";
+"controllers.list_controller.filter_label" = "Filtre";
 
+/// ITEM DETAILS CONTROLLER
+"controllers.item_details_controller.nav_bar_title_details_controller" = "Détails";
 
 /// COMMONS STRINGS
 "app.vocabulary.is_urgent" = "Urgent";
