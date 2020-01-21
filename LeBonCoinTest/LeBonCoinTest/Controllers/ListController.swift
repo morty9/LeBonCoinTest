@@ -115,8 +115,6 @@ class ListController: UIViewController {
             return
         }
         
-        print(filterCategory.name)
-        
         itemArrayFiltered = itemCategoryClassifier.sortItemsByCategory(items: itemArray, category: filterCategory)
         listView.filterView.categoryLabel.text = filterCategory.name
         listView.filterView.isHidden = false
@@ -149,12 +147,7 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ItemCellController
         
-        let item: Item
-        if (filterCategory != nil) {
-            item = itemArrayFiltered[indexPath.row]
-        } else {
-            item = itemArray[indexPath.row]
-        }
+        let item: Item = filterCategory != nil ? itemArrayFiltered[indexPath.row] : itemArray[indexPath.row]
         
         if let images_url_small = item.images_url.small {
             cell.cellView.itemImage.load(url: URL(string: images_url_small)!)
@@ -176,6 +169,9 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemDetailsController = ItemDetailsController()
+        let item: Item = filterCategory != nil ? itemArrayFiltered[indexPath.row] : itemArray[indexPath.row]
+        itemDetailsController.item = item
+        itemDetailsController.category = categories.filter { $0.id == item.category_id }.map { $0 }[0]
         navigationController?.pushViewController(itemDetailsController, animated: true)
     }
     

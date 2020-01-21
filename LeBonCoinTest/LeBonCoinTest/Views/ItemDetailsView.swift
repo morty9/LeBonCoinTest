@@ -37,19 +37,80 @@ class ItemDetailsView: UIView {
     
     let mainStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.addBackground(color: .white)
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
+        stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
     let itemImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "picture-gray")
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = Colors.grayColor
+        imageView.layer.cornerRadius = 3
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+    
+    let urgentView: UrgentView = {
+        let view = UrgentView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let backgroundTitle: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let itemTitle: UILabel = {
+        let label = UILabel()
+        label.font = .some(.systemFont(ofSize: 18, weight: .semibold))
+        label.numberOfLines = 4
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let priceView: LineLabelView = {
+        let view = LineLabelView()
+        view.labelLeft.text = Strings.price_label.localized
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let descriptionView: DescriptionView = {
+        let view = DescriptionView()
+        view.labelTop.text = Strings.description_label.localized
+        return view
+    }()
+    
+    let tagStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let categoryTagView: TagView = {
+        let tagView = TagView()
+        tagView.backgroundView.backgroundColor = Colors.darkBlue
+        tagView.translatesAutoresizingMaskIntoConstraints = false
+        return tagView
+    }()
+    
+    let dateTagView: TagView = {
+        let tagView = TagView()
+        tagView.backgroundView.backgroundColor = Colors.lightBlue
+        tagView.translatesAutoresizingMaskIntoConstraints = false
+        return tagView
     }()
     
     override init(frame: CGRect) {
@@ -61,6 +122,15 @@ class ItemDetailsView: UIView {
         setScrollView()
         scrollView.addSubview(backgroundView)
         setBackgroundView()
+        
+        backgroundView.addSubview(mainStackView)
+    
+        setMainStackView()
+        setItemImage()
+        setTitleView()
+        setPriceView()
+        setDescriptionView()
+        setTagStackView()
     }
     
     private func setScrollView() {
@@ -103,11 +173,15 @@ class ItemDetailsView: UIView {
     
     private func setMainStackView() {
         mainStackView.addArrangedSubview(itemImage)
-        //mainStackView.addArrangedSubview(mainDataStackView)
+        mainStackView.addArrangedSubview(urgentView)
+        mainStackView.addArrangedSubview(backgroundTitle)
+        mainStackView.addArrangedSubview(priceView)
+        mainStackView.addArrangedSubview(descriptionView)
+        mainStackView.addArrangedSubview(tagStackView)
         
         mainStackView
             .topAnchor
-            .constraint(equalTo: backgroundView.topAnchor, constant: 10)
+            .constraint(equalTo: backgroundView.topAnchor)
             .isActive = true
         mainStackView
             .leadingAnchor
@@ -117,8 +191,88 @@ class ItemDetailsView: UIView {
             .trailingAnchor
             .constraint(equalTo: backgroundView.trailingAnchor)
             .isActive = true
+        mainStackView
+            .bottomAnchor
+            .constraint(equalTo: backgroundView.bottomAnchor, constant: -10)
+            .isActive = true
         mainStackView.sizeToFit()
         mainStackView.layoutIfNeeded()
+    }
+    
+    private func setItemImage() {
+        itemImage
+            .heightAnchor
+            .constraint(equalToConstant: 240)
+            .isActive = true
+        itemImage
+            .widthAnchor
+            .constraint(equalTo: itemImage.heightAnchor, multiplier: 1.0/1.0)
+            .isActive = true
+        itemImage
+            .topAnchor
+            .constraint(equalTo: mainStackView.topAnchor, constant: 10)
+            .isActive = true
+    }
+    
+    private func setTitleView() {
+        backgroundTitle.addSubview(itemTitle)
+        
+        backgroundTitle
+            .leadingAnchor
+            .constraint(equalTo: mainStackView.leadingAnchor)
+            .isActive = true
+        backgroundTitle
+            .trailingAnchor
+            .constraint(equalTo: mainStackView.trailingAnchor)
+            .isActive = true
+        backgroundTitle.sizeToFit()
+        backgroundTitle.layoutIfNeeded()
+        
+        itemTitle
+            .topAnchor
+            .constraint(equalTo: backgroundTitle.topAnchor, constant: 10)
+            .isActive = true
+        itemTitle
+            .leadingAnchor
+            .constraint(equalTo: backgroundTitle.leadingAnchor, constant: 16)
+            .isActive = true
+        itemTitle
+            .trailingAnchor
+            .constraint(equalTo: backgroundTitle.trailingAnchor, constant: -16)
+            .isActive = true
+        itemTitle
+            .bottomAnchor
+            .constraint(equalTo: backgroundTitle.bottomAnchor, constant: -10)
+            .isActive = true
+    }
+    
+    private func setPriceView() {
+        priceView
+            .leadingAnchor
+            .constraint(equalTo: mainStackView.leadingAnchor)
+            .isActive = true
+        priceView
+            .trailingAnchor
+            .constraint(equalTo: mainStackView.trailingAnchor)
+            .isActive = true
+    }
+    
+    private func setDescriptionView() {
+        descriptionView
+            .leadingAnchor
+            .constraint(equalTo: mainStackView.leadingAnchor)
+            .isActive = true
+        descriptionView
+            .trailingAnchor
+            .constraint(equalTo: mainStackView.trailingAnchor)
+            .isActive = true
+        descriptionView.sizeToFit()
+        descriptionView.layoutIfNeeded()
+    }
+    
+    private func setTagStackView() {
+        tagStackView.addArrangedSubview(categoryTagView)
+        tagStackView.addArrangedSubview(dateTagView)
     }
     
     required init?(coder: NSCoder) {

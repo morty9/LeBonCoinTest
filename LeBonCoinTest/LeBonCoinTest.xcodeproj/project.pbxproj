@@ -38,6 +38,9 @@
 		089EFB0923D7581E009604AC /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0823D7581E009604AC /* PickerView.swift */; };
 		089EFB0B23D76200009604AC /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0A23D76200009604AC /* Classifier.swift */; };
 		089EFB0D23D76F0C009604AC /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0C23D76F0C009604AC /* FilterView.swift */; };
+		089EFB0F23D78F8C009604AC /* LineLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0E23D78F8C009604AC /* LineLabelView.swift */; };
+		089EFB1123D7A596009604AC /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB1023D7A596009604AC /* DescriptionView.swift */; };
+		089EFB1323D7AB5F009604AC /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB1223D7AB5F009604AC /* TagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		089EFB0823D7581E009604AC /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		089EFB0A23D76200009604AC /* Classifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
 		089EFB0C23D76F0C009604AC /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		089EFB0E23D78F8C009604AC /* LineLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineLabelView.swift; sourceTree = "<group>"; };
+		089EFB1023D7A596009604AC /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		089EFB1223D7AB5F009604AC /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +285,9 @@
 				089EFAFB23D65F94009604AC /* UrgentView.swift */,
 				089EFB0823D7581E009604AC /* PickerView.swift */,
 				089EFB0C23D76F0C009604AC /* FilterView.swift */,
+				089EFB0E23D78F8C009604AC /* LineLabelView.swift */,
+				089EFB1023D7A596009604AC /* DescriptionView.swift */,
+				089EFB1223D7AB5F009604AC /* TagView.swift */,
 			);
 			path = CommonsViews;
 			sourceTree = "<group>";
@@ -425,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				089EFB0D23D76F0C009604AC /* FilterView.swift in Sources */,
+				089EFB0F23D78F8C009604AC /* LineLabelView.swift in Sources */,
 				089EFB0B23D76200009604AC /* Classifier.swift in Sources */,
 				089EFAF723D62325009604AC /* ItemDetailsView.swift in Sources */,
 				089EFAA123D601BF009604AC /* AppDelegate.swift in Sources */,
@@ -436,8 +446,10 @@
 				089EFAE123D6046C009604AC /* DateUtils.swift in Sources */,
 				089EFAFC23D65F94009604AC /* UrgentView.swift in Sources */,
 				089EFAF123D62273009604AC /* ItemCellController.swift in Sources */,
+				089EFB1323D7AB5F009604AC /* TagView.swift in Sources */,
 				089EFAF323D62298009604AC /* ItemCellView.swift in Sources */,
 				089EFB0023D719A6009604AC /* UIImageView+Extension.swift in Sources */,
+				089EFB1123D7A596009604AC /* DescriptionView.swift in Sources */,
 				089EFAE523D608FF009604AC /* ListView.swift in Sources */,
 				089EFAE723D60F5E009604AC /* Item.swift in Sources */,
 				089EFAD723D60320009604AC /* StringLocalization.swift in Sources */,

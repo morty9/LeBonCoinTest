@@ -14,6 +14,8 @@ enum Strings: String {
     case picker_view_button_title = "controllers.list_controller.picker_view_button_title"
     case filter_label = "controllers.list_controller.filter_label"
     case nav_bar_title_details_controller = "controllers.item_details_controller.nav_bar_title_details_controller"
+    case price_label = "controllers.item_details_controller.price_label"
+    case description_label = "controllers.item_details_controller.description_label"
     
     var localized: String {
         return self.rawValue.localized()

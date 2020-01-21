@@ -13,6 +13,8 @@
 
 /// ITEM DETAILS CONTROLLER
 "controllers.item_details_controller.nav_bar_title_details_controller" = "Détails";
+"controllers.item_details_controller.price_label" = "Prix";
+"controllers.item_details_controller.description_label" = "Description";
 
 /// COMMONS STRINGS
 "app.vocabulary.is_urgent" = "Urgent";

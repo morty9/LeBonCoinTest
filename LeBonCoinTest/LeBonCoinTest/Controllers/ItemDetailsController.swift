@@ -16,11 +16,40 @@ class ItemDetailsController: UIViewController {
         return view
     }()
     
+    var item: Item?
+    var category: Category?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setView()
+        setData()
+    }
+    
+    private func setData() {
+        guard
+            let item = item,
+            let category = category else {
+                return
+        }
+        
+        if let images_url_small = item.images_url.small {
+            itemDetailsView.itemImage.load(url: URL(string: images_url_small)!)
+        } else {
+            itemDetailsView.itemImage.image = #imageLiteral(resourceName: "picture-64")
+            itemDetailsView.itemImage.contentMode = .center
+        }
+        
+        itemDetailsView.itemTitle.text = item.title
+        itemDetailsView.priceView.labelRight.text = "\(item.price)€"
+        itemDetailsView.descriptionView.textView.text = item.description
+        itemDetailsView.categoryTagView.label.text = category.name
+        itemDetailsView.dateTagView.label.text = item.creation_date.toDateString(format: .dateFR)
     }
     
     private func setView() {
+        navigationItem.titleView = itemDetailsView.navBarTitle
+        navigationController?.navigationBar.tintColor = .black
+        
         view.addSubview(itemDetailsView)
         itemDetailsView
             .topAnchor
