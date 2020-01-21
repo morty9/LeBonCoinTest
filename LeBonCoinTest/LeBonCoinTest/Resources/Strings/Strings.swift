@@ -10,6 +10,7 @@ import UIKit
 
 enum Strings: String {
     case nav_bar_title_list_controller = "controllers.list_controller.nav_bar_title_list_controller"
+    case is_urgent = "app.vocabulary.is_urgent"
     
     var localized: String {
         return self.rawValue.localized()

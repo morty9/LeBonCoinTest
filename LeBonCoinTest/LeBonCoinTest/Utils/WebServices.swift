@@ -10,6 +10,8 @@ import UIKit
 
 class APIItemHandler {
     
+    let parsers = ItemParser()
+    
     func getItems(completion: @escaping (_ result: [Item]) -> Void) {
         
         var request = URLRequest(url: URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json")!)
@@ -17,16 +19,12 @@ class APIItemHandler {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            let decoder = JSONDecoder()
-        
-            do {
-                guard let data = data else {
-                    return
-                }
-                let res = try decoder.decode([Item].self, from: data)
+            guard let data = data else {
+                return
+            }
+            
+            self.parsers.parseToItemArray(data: data) { (res) in
                 completion(res)
-            } catch {
-                print(error.localizedDescription)
             }
         })
 

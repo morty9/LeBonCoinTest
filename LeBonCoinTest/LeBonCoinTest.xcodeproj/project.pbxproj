@@ -29,6 +29,12 @@
 		089EFAF523D622FB009604AC /* ItemDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAF423D622FB009604AC /* ItemDetailsController.swift */; };
 		089EFAF723D62325009604AC /* ItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAF623D62325009604AC /* ItemDetailsView.swift */; };
 		089EFAF923D624C7009604AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAF823D624C7009604AC /* Strings.swift */; };
+		089EFAFC23D65F94009604AC /* UrgentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAFB23D65F94009604AC /* UrgentView.swift */; };
+		089EFAFE23D71953009604AC /* UIStackView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAFD23D71953009604AC /* UIStackView+Design.swift */; };
+		089EFB0023D719A6009604AC /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFAFF23D719A6009604AC /* UIImageView+Extension.swift */; };
+		089EFB0323D74452009604AC /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0223D74452009604AC /* ItemViewModel.swift */; };
+		089EFB0523D7445C009604AC /* ImageUrlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0423D7445C009604AC /* ImageUrlViewModel.swift */; };
+		089EFB0723D74466009604AC /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089EFB0623D74466009604AC /* CategoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +83,12 @@
 		089EFAF423D622FB009604AC /* ItemDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsController.swift; sourceTree = "<group>"; };
 		089EFAF623D62325009604AC /* ItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailsView.swift; sourceTree = "<group>"; };
 		089EFAF823D624C7009604AC /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		089EFAFB23D65F94009604AC /* UrgentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrgentView.swift; sourceTree = "<group>"; };
+		089EFAFD23D71953009604AC /* UIStackView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Design.swift"; sourceTree = "<group>"; };
+		089EFAFF23D719A6009604AC /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		089EFB0223D74452009604AC /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
+		089EFB0423D7445C009604AC /* ImageUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUrlViewModel.swift; sourceTree = "<group>"; };
+		089EFB0623D74466009604AC /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +144,7 @@
 				089EFAD223D602DA009604AC /* Resources */,
 				089EFADD23D60448009604AC /* Utils */,
 				089EFAD823D603EB009604AC /* Models */,
+				089EFB0123D7443B009604AC /* ViewModels */,
 				089EFAD923D603F5009604AC /* Views */,
 				089EFADA23D60403009604AC /* Controllers */,
 			);
@@ -205,6 +218,7 @@
 		089EFAD923D603F5009604AC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				089EFAFA23D65F48009604AC /* CommonsViews */,
 				089EFADC23D60434009604AC /* CellViews */,
 				089EFAE423D608FF009604AC /* ListView.swift */,
 				089EFAF623D62325009604AC /* ItemDetailsView.swift */,
@@ -246,8 +260,28 @@
 				089EFADF23D6046C009604AC /* DateUtils.swift */,
 				089EFAEC23D61EC5009604AC /* WebServices.swift */,
 				089EFAEE23D620FB009604AC /* Parsers.swift */,
+				089EFAFD23D71953009604AC /* UIStackView+Design.swift */,
+				089EFAFF23D719A6009604AC /* UIImageView+Extension.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		089EFAFA23D65F48009604AC /* CommonsViews */ = {
+			isa = PBXGroup;
+			children = (
+				089EFAFB23D65F94009604AC /* UrgentView.swift */,
+			);
+			path = CommonsViews;
+			sourceTree = "<group>";
+		};
+		089EFB0123D7443B009604AC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				089EFB0223D74452009604AC /* ItemViewModel.swift */,
+				089EFB0423D7445C009604AC /* ImageUrlViewModel.swift */,
+				089EFB0623D74466009604AC /* CategoryViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,14 +421,20 @@
 				089EFAE023D6046C009604AC /* Colors.swift in Sources */,
 				089EFAED23D61EC5009604AC /* WebServices.swift in Sources */,
 				089EFAEF23D620FB009604AC /* Parsers.swift in Sources */,
+				089EFB0723D74466009604AC /* CategoryViewModel.swift in Sources */,
 				089EFAE123D6046C009604AC /* DateUtils.swift in Sources */,
+				089EFAFC23D65F94009604AC /* UrgentView.swift in Sources */,
 				089EFAF123D62273009604AC /* ItemCellController.swift in Sources */,
 				089EFAF323D62298009604AC /* ItemCellView.swift in Sources */,
+				089EFB0023D719A6009604AC /* UIImageView+Extension.swift in Sources */,
 				089EFAE523D608FF009604AC /* ListView.swift in Sources */,
 				089EFAE723D60F5E009604AC /* Item.swift in Sources */,
 				089EFAD723D60320009604AC /* StringLocalization.swift in Sources */,
+				089EFB0523D7445C009604AC /* ImageUrlViewModel.swift in Sources */,
 				089EFAF923D624C7009604AC /* Strings.swift in Sources */,
 				089EFAA323D601BF009604AC /* SceneDelegate.swift in Sources */,
+				089EFAFE23D71953009604AC /* UIStackView+Design.swift in Sources */,
+				089EFB0323D74452009604AC /* ItemViewModel.swift in Sources */,
 				089EFAE923D60FC5009604AC /* ImageUrl.swift in Sources */,
 				089EFAE323D608CF009604AC /* ListController.swift in Sources */,
 				089EFAF523D622FB009604AC /* ItemDetailsController.swift in Sources */,

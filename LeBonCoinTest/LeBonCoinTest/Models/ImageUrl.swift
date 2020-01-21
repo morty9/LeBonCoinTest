@@ -10,10 +10,10 @@ import UIKit
 
 class ImageUrl: Codable {
     
-    public let small: String
-    public let thumb: String
+    public let small: String?
+    public let thumb: String?
     
-    init(small: String, thumb: String) {
+    init(small: String?, thumb: String?) {
         self.small = small
         self.thumb = thumb
     }

@@ -8,3 +8,7 @@
 
 /// LIST CONTROLLER
 "controllers.list_controller.nav_bar_title_list_controller" = "Liste d'articles";
+
+
+/// COMMONS STRINGS
+"app.vocabulary.is_urgent" = "Urgent";

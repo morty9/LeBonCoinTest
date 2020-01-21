@@ -11,6 +11,8 @@ import UIKit
 class ListController: UIViewController {
     
     let cellId = "ItemCell"
+    let apiItemHandler = APIItemHandler()
+    let apiCategoryHandler = APICategoryHandler()
     
     let listView: ListView = {
         let view = ListView()
@@ -18,10 +20,29 @@ class ListController: UIViewController {
         return view
     }()
     
+    var itemArray: [Item] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.listView.itemsTableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
         setTableViewDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        apiItemHandler.getItems { (res) in
+            self.itemArray = res
+        }
+        
+        apiCategoryHandler.getCategories { (res) in
+            print(res)
+        }
     }
     
     private func setTableViewDelegate() {
@@ -55,12 +76,21 @@ class ListController: UIViewController {
 
 extension ListController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return itemArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ItemCellController
-            
+        
+        let item = itemArray[indexPath.row]
+        
+        if let images_url_small = item.images_url.small {
+            cell.cellView.itemImage.load(url: URL(string: images_url_small)!)
+        } else {
+            cell.cellView.itemImage.image = #imageLiteral(resourceName: "picture-64")
+            cell.cellView.itemImage.contentMode = .center
+        }
+        
         return cell
     }
     
@@ -70,7 +100,7 @@ extension ListController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
+        return 200
     }
     
 }
