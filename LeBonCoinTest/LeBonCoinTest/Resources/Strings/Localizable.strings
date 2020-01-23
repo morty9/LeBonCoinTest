@@ -15,6 +15,7 @@
 "controllers.item_details_controller.nav_bar_title_details_controller" = "Détails";
 "controllers.item_details_controller.price_label" = "Prix";
 "controllers.item_details_controller.description_label" = "Description";
+"controllers.item_details_controller.no_item_label" = "Sélectionnez un produit";
 
 /// COMMONS STRINGS
 "app.vocabulary.is_urgent" = "Urgent";

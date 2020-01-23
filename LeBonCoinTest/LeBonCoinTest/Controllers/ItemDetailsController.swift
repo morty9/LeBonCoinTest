@@ -10,6 +10,12 @@ import UIKit
 
 class ItemDetailsController: UIViewController {
     
+    let noItemView: NoItemView = {
+        let view = NoItemView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let itemDetailsView: ItemDetailsView = {
         let view = ItemDetailsView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,8 +27,15 @@ class ItemDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setView()
-        setData()
+        view.backgroundColor = Colors.darkWhite
+        
+        /// If there is no item display a specific "empty view"
+        if (item != nil) {
+            setView()
+            setData()
+        } else {
+            setNoItemSelected()
+        }
     }
     
     private func setData() {
@@ -64,6 +77,29 @@ class ItemDetailsController: UIViewController {
             .constraint(equalTo: view.trailingAnchor)
             .isActive = true
         itemDetailsView
+            .bottomAnchor
+            .constraint(equalTo: view.bottomAnchor)
+            .isActive = true
+    }
+    
+    private func setNoItemSelected() {
+        navigationItem.titleView = itemDetailsView.navBarTitle
+        navigationController?.navigationBar.tintColor = .black
+        
+        view.addSubview(noItemView)
+        noItemView
+            .topAnchor
+            .constraint(equalTo: view.topAnchor)
+            .isActive = true
+        noItemView
+            .leadingAnchor
+            .constraint(equalTo: view.leadingAnchor)
+            .isActive = true
+        noItemView
+            .trailingAnchor
+            .constraint(equalTo: view.trailingAnchor)
+            .isActive = true
+        noItemView
             .bottomAnchor
             .constraint(equalTo: view.bottomAnchor)
             .isActive = true

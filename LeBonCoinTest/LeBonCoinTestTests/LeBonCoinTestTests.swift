@@ -66,5 +66,20 @@ class LeBonCoinTestTests: XCTestCase {
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
     }
+    
+    /// Test the DateFormatterString extension
+    func testDateFormatter() {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let date = dateFormatterGet.date(from: "2019-11-05T15:56:59+0000")
+        
+        XCTAssertEqual(date!.toDateString(format: .hours), "16:56")
+        XCTAssertEqual(date!.toDateString(format: .dateEN), "Nov 05, 2019")
+        XCTAssertEqual(date!.toDateString(format: .dateFR), "05 Nov, 2019 16:56")
+        XCTAssertNotEqual(date!.toDateString(format: .hours), "16:00")
+        XCTAssertNotEqual(date!.toDateString(format: .dateEN), "Jan 11, 2020")
+        XCTAssertNotEqual(date!.toDateString(format: .dateFR), "Jan 11, 2020")
+    }
 
 }

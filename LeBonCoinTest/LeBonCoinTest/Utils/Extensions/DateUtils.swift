@@ -39,7 +39,6 @@ extension DateFormatterString : RawRepresentable {
 /// Transform time interval to String with a specific formatter
 extension Date {
     func toDateString(format: DateFormatterString) -> String {
-        //let date = Date(timeIntervalSince1970: TimeInterval(self))
         let formatter = DateFormatter()
         formatter.dateFormat = format.rawValue
         formatter.timeZone = .current

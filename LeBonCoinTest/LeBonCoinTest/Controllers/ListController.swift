@@ -11,8 +11,10 @@ import UIKit
 class ListController: UIViewController {
     
     let cellId = "ItemCell"
-    let apiItemHandler = APIItemHandler()
-    let apiCategoryHandler = APICategoryHandler()
+    let fetcherItem = ItemFecther()
+    let fetcherCategory = CategoryFecther()
+    let itemDateClassifier = ItemDateClassifier()
+    let itemStatusClassifier = ItemStatusClassifier()
     let itemCategoryClassifier = ItemCategoryClassifier()
     
     let listView: ListView = {
@@ -38,7 +40,7 @@ class ListController: UIViewController {
     var itemArray: [Item] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.listView.itemsTableView.reloadData()
+                self.listView.itemsTableView.reloadSections(IndexSet(integer: .zero), with: .fade)
             }
         }
     }
@@ -46,7 +48,7 @@ class ListController: UIViewController {
     var itemArrayFiltered: [Item] = [] {
         didSet {
             DispatchQueue.main.async {
-                self.listView.itemsTableView.reloadData()
+                self.listView.itemsTableView.reloadSections(IndexSet(integer: .zero), with: .fade)
             }
         }
     }
@@ -61,15 +63,18 @@ class ListController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        apiCategoryHandler.getCategories { (res) in
+        fetcherCategory.fetch(url: Urls.categoriesUrl) { (res) in
             self.categories = res
             self.getItems()
         }
     }
     
+    /// Call the fetcher item features to get all items
     private func getItems() {
-        apiItemHandler.getItems { (res) in
-            self.itemArray = res
+        fetcherItem.fetch(url: Urls.itemsUrl) { (res) in
+            var sorted = self.itemDateClassifier.sortItemsByDate(items: res)
+            sorted = self.itemStatusClassifier.sortItemsByStatus(items: sorted)
+            self.itemArray = sorted
         }
     }
     
@@ -110,6 +115,7 @@ class ListController: UIViewController {
         listView.setCategoryPickerView()
     }
     
+    /// Launch filter to get all items corresponding to the selected category
     @objc func launchFilter() {
         guard let filterCategory = filterCategory else {
             return

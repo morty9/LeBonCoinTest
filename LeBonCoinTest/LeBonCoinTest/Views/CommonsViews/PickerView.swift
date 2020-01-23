@@ -82,26 +82,30 @@ class PickerView: UIView {
             .isActive = true
         pickerView
             .bottomAnchor
-            .constraint(equalTo: button.topAnchor, constant: 5)
+            .constraint(equalTo: button.topAnchor, constant: 10)
+            .isActive = true
+        pickerView
+            .heightAnchor
+            .constraint(equalToConstant: 100)
             .isActive = true
     }
     
     private func setButton() {
         button
             .topAnchor
-            .constraint(equalTo: pickerView.bottomAnchor, constant: 5)
+            .constraint(equalTo: pickerView.bottomAnchor, constant: 10)
             .isActive = true
         button
             .leadingAnchor
-            .constraint(equalTo: backgroundView.leadingAnchor, constant: 10)
+            .constraint(equalTo: backgroundView.leadingAnchor, constant: 50)
             .isActive = true
         button
             .trailingAnchor
-            .constraint(equalTo: backgroundView.trailingAnchor, constant: -10)
+            .constraint(equalTo: backgroundView.trailingAnchor, constant: -50)
             .isActive = true
         button
             .bottomAnchor
-            .constraint(equalTo: backgroundView.bottomAnchor, constant: -5)
+            .constraint(equalTo: backgroundView.bottomAnchor, constant: -10)
             .isActive = true
     }
     

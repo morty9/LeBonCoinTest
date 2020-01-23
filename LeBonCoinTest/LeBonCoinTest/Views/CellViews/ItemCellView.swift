@@ -39,7 +39,6 @@ class ItemCellView: UIView {
     
     let itemTitle: UILabel = {
         let label = UILabel()
-        label.text = "Pc portable hp elitebook 820 g1 core i5 4 go ram 250 go hdd"
         label.font = .some(.systemFont(ofSize: 15, weight: .semibold))
         label.numberOfLines = 4
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +53,6 @@ class ItemCellView: UIView {
 
     let itemCategory: UILabel = {
         let label = UILabel()
-        label.text = "Électronique"
         label.font = .some(.systemFont(ofSize: 15, weight: .thin))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +60,6 @@ class ItemCellView: UIView {
     
     let itemPrice: UILabel = {
         let label = UILabel()
-        label.text = "12.99€"
         label.font = .some(.systemFont(ofSize: 17, weight: .semibold))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -70,7 +67,6 @@ class ItemCellView: UIView {
     
     let itemDate: UILabel = {
         let label = UILabel()
-        label.text = "11/09/20"
         label.font = .some(.systemFont(ofSize: 10, weight: .semibold))
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -110,7 +106,7 @@ class ItemCellView: UIView {
     private func setItemImage() {
         itemImage
             .heightAnchor
-            .constraint(equalToConstant: 130)
+            .constraint(equalTo: backgroundView.heightAnchor, constant: -40)
             .isActive = true
         itemImage
             .widthAnchor
