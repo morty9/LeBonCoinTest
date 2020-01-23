@@ -57,6 +57,11 @@ class ItemDetailsController: UIViewController {
         itemDetailsView.descriptionView.textView.text = item.description
         itemDetailsView.categoryTagView.label.text = category.name
         itemDetailsView.dateTagView.label.text = item.creation_date.toDateString(format: .dateFR)
+        
+        if let siret = item.siret {
+            itemDetailsView.siretView.isHidden = false
+            itemDetailsView.siretView.labelRight.text = siret
+        }
     }
     
     private func setView() {

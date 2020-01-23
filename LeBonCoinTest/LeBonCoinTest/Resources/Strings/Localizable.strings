@@ -16,6 +16,7 @@
 "controllers.item_details_controller.price_label" = "Prix";
 "controllers.item_details_controller.description_label" = "Description";
 "controllers.item_details_controller.no_item_label" = "Sélectionnez un produit";
+"controllers.item_details_controller.siret_label" = "Siret";
 
 /// COMMONS STRINGS
 "app.vocabulary.is_urgent" = "Urgent";

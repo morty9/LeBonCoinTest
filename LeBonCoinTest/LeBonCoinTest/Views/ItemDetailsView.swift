@@ -89,6 +89,13 @@ class ItemDetailsView: UIView {
         return view
     }()
     
+    let siretView: LineLabelView = {
+        let view = LineLabelView()
+        view.labelLeft.text = Strings.siret_label.localized
+        view.isHidden = true
+        return view
+    }()
+    
     let tagStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -130,6 +137,7 @@ class ItemDetailsView: UIView {
         setTitleView()
         setPriceView()
         setDescriptionView()
+        setSiretView()
         setTagStackView()
     }
     
@@ -177,6 +185,7 @@ class ItemDetailsView: UIView {
         mainStackView.addArrangedSubview(backgroundTitle)
         mainStackView.addArrangedSubview(priceView)
         mainStackView.addArrangedSubview(descriptionView)
+        mainStackView.addArrangedSubview(siretView)
         mainStackView.addArrangedSubview(tagStackView)
         
         mainStackView
@@ -268,6 +277,19 @@ class ItemDetailsView: UIView {
             .isActive = true
         descriptionView.sizeToFit()
         descriptionView.layoutIfNeeded()
+    }
+    
+    private func setSiretView() {
+        siretView
+            .leadingAnchor
+            .constraint(equalTo: mainStackView.leadingAnchor)
+            .isActive = true
+        siretView
+            .trailingAnchor
+            .constraint(equalTo: mainStackView.trailingAnchor)
+            .isActive = true
+        siretView.sizeToFit()
+        siretView.layoutIfNeeded()
     }
     
     private func setTagStackView() {
