@@ -16,6 +16,7 @@ class ListController: UIViewController {
     let itemDateClassifier = ItemDateClassifier()
     let itemStatusClassifier = ItemStatusClassifier()
     let itemCategoryClassifier = ItemCategoryClassifier()
+    let refreshControl = UIRefreshControl()
     
     let listView: ListView = {
         let view = ListView()
@@ -59,6 +60,7 @@ class ListController: UIViewController {
         setView()
         setTableViewDelegate()
         setPickerViewDelegate()
+        initReafreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,12 +71,33 @@ class ListController: UIViewController {
         }
     }
     
+    /// Initlize the refresh control (swipe down to refresh)
+    func initReafreshControl() {
+        refreshControl.tintColor = Colors.darkBlue
+        let attributes = [
+            NSAttributedString.Key.foregroundColor: Colors.darkBlue]
+        refreshControl.attributedTitle = NSAttributedString(string: "Chargement...", attributes: attributes)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
+        listView.itemsTableView.addSubview(refreshControl)
+        listView.itemsTableView.alwaysBounceVertical = true
+    }
+    
+    /// Action when the user swipe down the view
+    @objc func refresh(sender:AnyObject) {
+        getItems()
+    }
+    
     /// Call the fetcher item features to get all items
     private func getItems() {
         fetcherItem.fetch(url: Urls.itemsUrl) { (res) in
             var sorted = self.itemDateClassifier.sortItemsByDate(items: res)
             sorted = self.itemStatusClassifier.sortItemsByStatus(items: sorted)
             self.itemArray = sorted
+            DispatchQueue.main.async {
+                if (self.refreshControl.isRefreshing) {
+                    self.refreshControl.endRefreshing()
+                }
+            }
         }
     }
     
